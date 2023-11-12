@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol GameDetailRouterProtocol {
-
+    func goToGameWebsite(_ gameWebsite: String)
 }
 
 class GameDetailRouter: GameDetailRouterProtocol {
@@ -17,5 +18,11 @@ class GameDetailRouter: GameDetailRouterProtocol {
 
     init(gameDetailViewController: UIViewController) {
         self.gameDetailViewController = gameDetailViewController
+    }
+
+    func goToGameWebsite(_ gameWebsite: String) {
+        let url = URL(string: gameWebsite)
+        let safariViewController = SFSafariViewController(url: url!)
+        gameDetailViewController?.present(safariViewController, animated: true)
     }
 }

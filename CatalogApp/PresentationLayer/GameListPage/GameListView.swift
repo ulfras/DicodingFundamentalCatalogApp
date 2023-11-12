@@ -9,13 +9,28 @@ import UIKit
 
 protocol GameListViewProtocol {
     var gameListPresenter: GameListPresenterProtocol? { get set }
+
+    func showGameList(_ gameList: [GameListEntity])
+
+    func failedToFetchGameList(_ errorString: String)
 }
 
 class GameListViewController: UIViewController {
 
     var gameListPresenter: GameListPresenterProtocol?
 
+    var gameListData: [GameListEntity] = []
+
     @IBOutlet weak var gameListTableViewOutlet: UITableView!
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        gameListPresenter?.willFetchGameList()
+
+        if let selectedIndexPath = gameListTableViewOutlet.indexPathForSelectedRow {
+            gameListTableViewOutlet.deselectRow(at: selectedIndexPath, animated: true)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +41,42 @@ class GameListViewController: UIViewController {
 
         gameListTableViewOutlet.register(UINib(nibName: "GameListCell", bundle: Bundle.main), forCellReuseIdentifier: "GameListCell")
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.hidesBottomBarWhenPushed = false
+    }
 }
 
 extension GameListViewController: GameListViewProtocol {
+    func showGameList(_ gameList: [GameListEntity]) {
+        self.gameListData = gameList
+        gameListTableViewOutlet.reloadData()
+    }
 
+    func failedToFetchGameList(_ errorString: String) {
+        let alert = UIAlertController(title: "Error", message: "Failed to fetch game list: \(errorString)", preferredStyle: .alert)
+
+        let retryButton = UIAlertAction(title: "Retry", style: .default) { _ in
+            self.gameListPresenter?.willFetchGameList()
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .destructive)
+
+        alert.addAction(retryButton)
+        alert.addAction(cancelButton)
+
+        self.present(alert, animated: true)
+    }
 }
 
 extension GameListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+
+        guard !gameListData.isEmpty else {
+            return 0
+        }
+
+        return gameListData.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,16 +84,27 @@ extension GameListViewController: UITableViewDataSource {
 
         guard let cell = reusableCell as? GameListCell else { return reusableCell }
 
+        let reusableData = gameListData[indexPath.row]
+
+        cell.selectionStyle = .none
+        cell.gameImageViewOutlet.setImageFrom(reusableData.backgroundImage)
+        cell.gameNameLabelOutlet.text = reusableData.name
+        cell.releaseDataLabelOutlet.text = "Release Date: \(reusableData.released.formattedDate())"
+        cell.gameRatingLabelOutlet.text = String(reusableData.rating)
+
         return cell
     }
 }
 
 extension GameListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameListCell") as! GameListCell
+        return cell.bounds.height
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        self.hidesBottomBarWhenPushed = true
+        let reusableData = gameListData[indexPath.row]
+        gameListPresenter?.willGoToGameDetailPage(gameData: reusableData)
     }
 }

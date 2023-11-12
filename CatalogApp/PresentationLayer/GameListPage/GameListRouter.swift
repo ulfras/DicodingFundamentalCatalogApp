@@ -8,7 +8,7 @@
 import UIKit
 
 protocol GameListRouterProtocol {
-
+    func goToGameDetailPage(gameData: GameListEntity)
 }
 
 class GameListRouter: GameListRouterProtocol {
@@ -16,5 +16,11 @@ class GameListRouter: GameListRouterProtocol {
 
     init(gameListViewController: UIViewController) {
         self.gameListViewController = gameListViewController
+    }
+
+    func goToGameDetailPage(gameData: GameListEntity) {
+        let gameDetailPage = GameDetailBuilder.build(gameData: gameData)
+        gameDetailPage.title = gameData.name
+        gameListViewController?.navigationController?.pushViewController(gameDetailPage, animated: true)
     }
 }
