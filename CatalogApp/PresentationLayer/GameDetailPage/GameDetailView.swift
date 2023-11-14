@@ -10,7 +10,7 @@ import UIKit
 protocol GameDetailViewProtocol {
     var gameDetailPresenter: GameDetailPresenterProtocol? { get set }
 
-    func showGameDetailData(_ gameData: GameListEntity, gameDetailData: RAWGGameDetailModel)
+    func showGameDetailData(gameDetailData: RAWGGameDetailModel)
 
     func failedToFetchGameDetail(_ errorString: String)
 }
@@ -18,7 +18,7 @@ protocol GameDetailViewProtocol {
 class GameDetailViewController: UIViewController {
 
     var gameDetailPresenter: GameDetailPresenterProtocol?
-    var gameWebsite: String?
+    var gameDetailData: RAWGGameDetailModel?
 
     @IBOutlet weak var gameImageViewOutlet: UIImageView!
     @IBOutlet weak var developerNameLabelOutlet: UILabel!
@@ -35,6 +35,10 @@ class GameDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+
+    private func setupUI() {
         gameImageViewOutlet.layer.cornerRadius = 15
         gameImageViewOutlet.layer.borderWidth = 1
         gameImageViewOutlet.layer.borderColor = UIColor.black.cgColor
@@ -44,13 +48,40 @@ class GameDetailViewController: UIViewController {
         visitWebsiteButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
     }
 
-    @IBAction func visitGameWebTapIn(_ sender: Any) {
-        guard let gameWebsite = gameWebsite else { return }
+    private func updateFavoriteButton(_ isFavorited: Bool) {
+        let favoriteImageName = isFavorited ? "heart.fill" : "heart"
+        let favoriteImage = UIImage(systemName: favoriteImageName)
 
-        if gameWebsite == "" {
+        let favoriteButton = UIBarButtonItem(image: favoriteImage, landscapeImagePhone: favoriteImage, style: .done, target: self, action: #selector(favoriteButtonTapped))
+        favoriteButton.tintColor = .systemBlue
+
+        navigationItem.rightBarButtonItem = favoriteButton
+    }
+
+    @objc func favoriteButtonTapped() {
+        guard var gameDetailData = gameDetailData else { return }
+
+        if gameDetailData.isFavorite == nil || gameDetailData.isFavorite! == false {
+            gameDetailData.isFavorite = true
+            self.gameDetailData = gameDetailData
+            updateFavoriteButton(gameDetailData.isFavorite!)
+            gameDetailPresenter?.willAddToFavorite(gameDetailData)
+        } else {
+            gameDetailData.isFavorite?.toggle()
+            self.gameDetailData = gameDetailData
+            updateFavoriteButton(gameDetailData.isFavorite!)
+            gameDetailPresenter?.willRemoveFromFavorite(gameDetailData.id)
+        }
+    }
+
+    @IBAction func visitGameWebTapIn(_ sender: Any) {
+
+        guard let gameDetailData = gameDetailData else { return }
+
+        if gameDetailData.website == "" {
             CustomToast.show(message: "No Website Provided", bgColor: .systemRed, controller: self)
         } else {
-            gameDetailPresenter?.willGoToGameWebsite(gameWebsite)
+            gameDetailPresenter?.willGoToGameWebsite(gameDetailData.website)
         }
     }
 }
@@ -70,11 +101,17 @@ extension GameDetailViewController: GameDetailViewProtocol {
         self.present(alert, animated: true)
     }
 
-    func showGameDetailData(_ gameData: GameListEntity, gameDetailData: RAWGGameDetailModel) {
+    func showGameDetailData(gameDetailData: RAWGGameDetailModel) {
 
-        gameWebsite = gameDetailData.website
+        self.gameDetailData = gameDetailData
 
-        gameImageViewOutlet.setImageFrom(gameData.backgroundImage)
+        if gameDetailData.isFavorite != nil {
+            updateFavoriteButton(gameDetailData.isFavorite!)
+        } else {
+            updateFavoriteButton(false)
+        }
+
+        gameImageViewOutlet.setImageFrom(gameDetailData.backgroundImage)
 
         let gameDev = gameDetailData.developers.map { $0.name }.joined(separator: ", ")
         developerNameLabelOutlet.text = "Developer: \(gameDev)"
@@ -82,8 +119,9 @@ extension GameDetailViewController: GameDetailViewProtocol {
         let gamePub = gameDetailData.publishers.map { $0.name }.joined(separator: ", ")
         publisherNameLabelOutlet.text = "Publisher: \(gamePub)"
 
-        releaseDateLabelOutlet.text = "Release Date: \(gameData.released.formattedDate())"
+        releaseDateLabelOutlet.text = "Release Date: \(gameDetailData.released.formattedDate())"
         ratingLabelOutlet.text = "Game Rating: \(gameDetailData.esrbRating.name)"
         gameDescTextViewOutlet.text = gameDetailData.descriptionRaw
+
     }
 }

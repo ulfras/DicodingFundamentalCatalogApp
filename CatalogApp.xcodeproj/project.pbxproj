@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310FA77B2B03166B00EB681C /* LaunchScreenDelayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA77A2B03166B00EB681C /* LaunchScreenDelayView.swift */; };
+		310FA77D2B03168A00EB681C /* LaunchScreenDelay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 310FA77C2B03168A00EB681C /* LaunchScreenDelay.storyboard */; };
+		310FA77F2B0317C900EB681C /* LaunchScreenDelayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA77E2B0317C900EB681C /* LaunchScreenDelayInteractor.swift */; };
+		310FA7812B0317D000EB681C /* LaunchScreenDelayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA7802B0317D000EB681C /* LaunchScreenDelayPresenter.swift */; };
+		310FA7832B0317D400EB681C /* LaunchScreenDelayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA7822B0317D400EB681C /* LaunchScreenDelayRouter.swift */; };
+		310FA7852B0317D800EB681C /* LaunchScreenDelayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA7842B0317D800EB681C /* LaunchScreenDelayBuilder.swift */; };
+		310FA7882B031B2C00EB681C /* GameListDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA7872B031B2C00EB681C /* GameListDefaults.swift */; };
+		310FA78A2B032C5C00EB681C /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA7892B032C5C00EB681C /* LoadingScreen.swift */; };
+		310FA78C2B03574B00EB681C /* FavoriteGameDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA78B2B03574B00EB681C /* FavoriteGameDefaults.swift */; };
+		310FA78F2B03624A00EB681C /* FavoriteGameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA78E2B03624A00EB681C /* FavoriteGameListView.swift */; };
+		310FA7912B03630000EB681C /* FavoriteGameListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA7902B03630000EB681C /* FavoriteGameListPresenter.swift */; };
+		310FA7932B03631F00EB681C /* FavoriteGameListPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 310FA7922B03631F00EB681C /* FavoriteGameListPage.storyboard */; };
+		310FA7952B0364CC00EB681C /* FavoriteGameListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA7942B0364CC00EB681C /* FavoriteGameListInteractor.swift */; };
+		310FA7972B0364D700EB681C /* FavoriteGameListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA7962B0364D700EB681C /* FavoriteGameListRouter.swift */; };
+		310FA7992B0364DB00EB681C /* FavoriteGameListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA7982B0364DB00EB681C /* FavoriteGameListBuilder.swift */; };
+		310FA79B2B036F9700EB681C /* DeveloperNameDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FA79A2B036F9700EB681C /* DeveloperNameDefaults.swift */; };
 		312E2C492B00B4E20000C7D8 /* RAWG.plist in Resources */ = {isa = PBXBuildFile; fileRef = 312E2C482B00B4E20000C7D8 /* RAWG.plist */; };
 		319E0BFD2AFB859C001E1B59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319E0BFC2AFB859C001E1B59 /* AppDelegate.swift */; };
 		319E0BFF2AFB859C001E1B59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319E0BFE2AFB859C001E1B59 /* SceneDelegate.swift */; };
@@ -47,6 +63,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		310FA77A2B03166B00EB681C /* LaunchScreenDelayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenDelayView.swift; sourceTree = "<group>"; };
+		310FA77C2B03168A00EB681C /* LaunchScreenDelay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenDelay.storyboard; sourceTree = "<group>"; };
+		310FA77E2B0317C900EB681C /* LaunchScreenDelayInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenDelayInteractor.swift; sourceTree = "<group>"; };
+		310FA7802B0317D000EB681C /* LaunchScreenDelayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenDelayPresenter.swift; sourceTree = "<group>"; };
+		310FA7822B0317D400EB681C /* LaunchScreenDelayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenDelayRouter.swift; sourceTree = "<group>"; };
+		310FA7842B0317D800EB681C /* LaunchScreenDelayBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenDelayBuilder.swift; sourceTree = "<group>"; };
+		310FA7872B031B2C00EB681C /* GameListDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListDefaults.swift; sourceTree = "<group>"; };
+		310FA7892B032C5C00EB681C /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		310FA78B2B03574B00EB681C /* FavoriteGameDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGameDefaults.swift; sourceTree = "<group>"; };
+		310FA78E2B03624A00EB681C /* FavoriteGameListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGameListView.swift; sourceTree = "<group>"; };
+		310FA7902B03630000EB681C /* FavoriteGameListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGameListPresenter.swift; sourceTree = "<group>"; };
+		310FA7922B03631F00EB681C /* FavoriteGameListPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FavoriteGameListPage.storyboard; sourceTree = "<group>"; };
+		310FA7942B0364CC00EB681C /* FavoriteGameListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGameListInteractor.swift; sourceTree = "<group>"; };
+		310FA7962B0364D700EB681C /* FavoriteGameListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGameListRouter.swift; sourceTree = "<group>"; };
+		310FA7982B0364DB00EB681C /* FavoriteGameListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGameListBuilder.swift; sourceTree = "<group>"; };
+		310FA79A2B036F9700EB681C /* DeveloperNameDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperNameDefaults.swift; sourceTree = "<group>"; };
 		312E2C482B00B4E20000C7D8 /* RAWG.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RAWG.plist; sourceTree = "<group>"; };
 		319E0BF92AFB859C001E1B59 /* CatalogApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatalogApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		319E0BFC2AFB859C001E1B59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +134,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		310FA7862B031B1D00EB681C /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				310FA7872B031B2C00EB681C /* GameListDefaults.swift */,
+				310FA78B2B03574B00EB681C /* FavoriteGameDefaults.swift */,
+				310FA79A2B036F9700EB681C /* DeveloperNameDefaults.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		310FA78D2B03621900EB681C /* FavoriteGameListPage */ = {
+			isa = PBXGroup;
+			children = (
+				310FA7922B03631F00EB681C /* FavoriteGameListPage.storyboard */,
+				310FA7982B0364DB00EB681C /* FavoriteGameListBuilder.swift */,
+				310FA7942B0364CC00EB681C /* FavoriteGameListInteractor.swift */,
+				310FA7902B03630000EB681C /* FavoriteGameListPresenter.swift */,
+				310FA7962B0364D700EB681C /* FavoriteGameListRouter.swift */,
+				310FA78E2B03624A00EB681C /* FavoriteGameListView.swift */,
+			);
+			path = FavoriteGameListPage;
+			sourceTree = "<group>";
+		};
 		319E0BF02AFB859C001E1B59 = {
 			isa = PBXGroup;
 			children = (
@@ -123,11 +178,11 @@
 		319E0BFB2AFB859C001E1B59 /* CatalogApp */ = {
 			isa = PBXGroup;
 			children = (
-				31FF16B72AFCCDB100F52F6D /* Utility */,
-				31FF16AA2AFC975600F52F6D /* DataLayer */,
 				319E0C112AFB868F001E1B59 /* CoreDelegate */,
+				31FF16AA2AFC975600F52F6D /* DataLayer */,
 				319E0C122AFB8699001E1B59 /* PresentationLayer */,
 				319E0C102AFB863A001E1B59 /* Resources */,
+				31FF16B72AFCCDB100F52F6D /* Utility */,
 			);
 			path = CatalogApp;
 			sourceTree = "<group>";
@@ -135,10 +190,10 @@
 		319E0C102AFB863A001E1B59 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				31F232442AFBB51F007CE0A1 /* .swiftlint.yml */,
 				319E0C0A2AFB859E001E1B59 /* Info.plist */,
-				319E0C052AFB859E001E1B59 /* Assets.xcassets */,
 				312E2C482B00B4E20000C7D8 /* RAWG.plist */,
+				319E0C052AFB859E001E1B59 /* Assets.xcassets */,
+				31F232442AFBB51F007CE0A1 /* .swiftlint.yml */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -155,6 +210,7 @@
 		319E0C122AFB8699001E1B59 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				310FA78D2B03621900EB681C /* FavoriteGameListPage */,
 				31F232462AFBB730007CE0A1 /* TabBarBase */,
 				319E0C162AFB86C5001E1B59 /* GameDetailPage */,
 				319E0C152AFB86BB001E1B59 /* ProfilePage */,
@@ -167,6 +223,12 @@
 		319E0C132AFB86A0001E1B59 /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
+				310FA77C2B03168A00EB681C /* LaunchScreenDelay.storyboard */,
+				310FA77A2B03166B00EB681C /* LaunchScreenDelayView.swift */,
+				310FA77E2B0317C900EB681C /* LaunchScreenDelayInteractor.swift */,
+				310FA7802B0317D000EB681C /* LaunchScreenDelayPresenter.swift */,
+				310FA7822B0317D400EB681C /* LaunchScreenDelayRouter.swift */,
+				310FA7842B0317D800EB681C /* LaunchScreenDelayBuilder.swift */,
 				319E0C072AFB859E001E1B59 /* LaunchScreen.storyboard */,
 			);
 			path = LaunchScreen;
@@ -245,6 +307,7 @@
 			children = (
 				31FF16AB2AFC975B00F52F6D /* API */,
 				31FF16AC2AFC975F00F52F6D /* Model */,
+				310FA7862B031B1D00EB681C /* UserDefaults */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -272,6 +335,7 @@
 				31FF16A72AFC96A900F52F6D /* Extension */,
 				31FF16B82AFCCDBD00F52F6D /* ImageCache.swift */,
 				31D8FFCA2AFE124E00B03FF1 /* CustomToast.swift */,
+				310FA7892B032C5C00EB681C /* LoadingScreen.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -356,7 +420,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				31F232452AFBB51F007CE0A1 /* .swiftlint.yml in Resources */,
+				310FA7932B03631F00EB681C /* FavoriteGameListPage.storyboard in Resources */,
 				31FBA8382AFBC59400949621 /* ProfilePage.storyboard in Resources */,
+				310FA77D2B03168A00EB681C /* LaunchScreenDelay.storyboard in Resources */,
 				31F232572AFBBEA6007CE0A1 /* GameDetailPage.storyboard in Resources */,
 				319E0C092AFB859E001E1B59 /* LaunchScreen.storyboard in Resources */,
 				31FBA8472AFBD68800949621 /* GameListCell.xib in Resources */,
@@ -371,6 +437,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		312E2C4A2B00B7270000C7D8 /* RAWG.plist Script */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -452,22 +519,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				310FA7882B031B2C00EB681C /* GameListDefaults.swift in Sources */,
 				319E0BFD2AFB859C001E1B59 /* AppDelegate.swift in Sources */,
 				31F2324A2AFBB744007CE0A1 /* TabBarViewController.swift in Sources */,
+				310FA78C2B03574B00EB681C /* FavoriteGameDefaults.swift in Sources */,
 				31F2324F2AFBBE7A007CE0A1 /* GameDetailPresenter.swift in Sources */,
+				310FA7832B0317D400EB681C /* LaunchScreenDelayRouter.swift in Sources */,
+				310FA7812B0317D000EB681C /* LaunchScreenDelayPresenter.swift in Sources */,
+				310FA78F2B03624A00EB681C /* FavoriteGameListView.swift in Sources */,
 				31F232532AFBBE84007CE0A1 /* GameDetailRouter.swift in Sources */,
 				31FF16B02AFCB8AD00F52F6D /* RAWGGameListModel.swift in Sources */,
 				31FF16A92AFC96B600F52F6D /* UIImageView + Extension.swift in Sources */,
 				31F2325B2AFBC167007CE0A1 /* GameListPresenter.swift in Sources */,
+				310FA7952B0364CC00EB681C /* FavoriteGameListInteractor.swift in Sources */,
+				310FA77F2B0317C900EB681C /* LaunchScreenDelayInteractor.swift in Sources */,
+				310FA7972B0364D700EB681C /* FavoriteGameListRouter.swift in Sources */,
 				31F232592AFBC120007CE0A1 /* GameListView.swift in Sources */,
 				31FF16BF2AFCDDC800F52F6D /* RAWGGameDetailModel.swift in Sources */,
+				310FA77B2B03166B00EB681C /* LaunchScreenDelayView.swift in Sources */,
 				319E0BFF2AFB859C001E1B59 /* SceneDelegate.swift in Sources */,
+				310FA79B2B036F9700EB681C /* DeveloperNameDefaults.swift in Sources */,
+				310FA78A2B032C5C00EB681C /* LoadingScreen.swift in Sources */,
 				31FBA8402AFBC63600949621 /* ProfileRouter.swift in Sources */,
 				31FF16B22AFCC86400F52F6D /* GameListEntity.swift in Sources */,
 				31FBA83C2AFBC5F200949621 /* ProfileInteractor.swift in Sources */,
 				31F2325D2AFBC16B007CE0A1 /* GameListInteractor.swift in Sources */,
 				31F2324D2AFBBE75007CE0A1 /* GameDetailView.swift in Sources */,
 				31FBA8462AFBD68800949621 /* GameListCell.swift in Sources */,
+				310FA7912B03630000EB681C /* FavoriteGameListPresenter.swift in Sources */,
 				31FBA83E2AFBC60A00949621 /* ProfilePresenter.swift in Sources */,
 				31F232552AFBBE8F007CE0A1 /* GameDetailBuilder.swift in Sources */,
 				31FBA8422AFBC6EC00949621 /* ProfileBuilder.swift in Sources */,
@@ -475,10 +554,12 @@
 				31FF16B92AFCCDBD00F52F6D /* ImageCache.swift in Sources */,
 				31FF16AE2AFCB2D200F52F6D /* RAWGAPI.swift in Sources */,
 				31FF16BD2AFCD20500F52F6D /* UIImage + Extension.swift in Sources */,
+				310FA7852B0317D800EB681C /* LaunchScreenDelayBuilder.swift in Sources */,
 				31F2325F2AFBC170007CE0A1 /* GameListRouter.swift in Sources */,
 				31F232512AFBBE80007CE0A1 /* GameDetailInteractor.swift in Sources */,
 				31FBA83A2AFBC5B100949621 /* ProfileView.swift in Sources */,
 				31D8FFCB2AFE124E00B03FF1 /* CustomToast.swift in Sources */,
+				310FA7992B0364DB00EB681C /* FavoriteGameListBuilder.swift in Sources */,
 				31F232612AFBC175007CE0A1 /* GameListBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         self.window = window
 
-        showTabBarPage()
+        showDelayScreen()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -44,10 +44,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 
 extension SceneDelegate {
-    private func showTabBarPage() {
-        let tabBarPage = TabBarViewController()
-
-        window?.rootViewController = tabBarPage
+    private func showDelayScreen() {
+        let launchScreenDelay = LaunchScreenDelayBuilder.build()
+        window?.rootViewController = launchScreenDelay
         window?.makeKeyAndVisible()
     }
 }

@@ -36,8 +36,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maulana Muhammad Yusuf Frasha" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDB-aB-bKm">
-                                <rect key="frame" x="64" y="362.33333333333331" width="262" height="20.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maulana Muhammad Yusuf Frasha" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDB-aB-bKm">
+                                <rect key="frame" x="20" y="362.33333333333331" width="350" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,9 @@
                         <constraints>
                             <constraint firstItem="Ut4-NC-nI9" firstAttribute="top" secondItem="IwT-ha-XkB" secondAttribute="bottom" constant="5" id="5qd-2h-SgV"/>
                             <constraint firstItem="IwT-ha-XkB" firstAttribute="top" secondItem="4Bv-sE-pg1" secondAttribute="bottom" constant="20" id="DSG-Ki-jIq"/>
+                            <constraint firstItem="fDB-aB-bKm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Pk6-Vh-J4J"/>
                             <constraint firstItem="fDB-aB-bKm" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Qfu-4b-TMG"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="fDB-aB-bKm" secondAttribute="trailing" constant="20" id="RUw-W4-oXL"/>
                             <constraint firstItem="IwT-ha-XkB" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Z3k-b6-V4n"/>
                             <constraint firstItem="fDB-aB-bKm" firstAttribute="top" secondItem="Ut4-NC-nI9" secondAttribute="bottom" constant="5" id="aCv-AA-HRM"/>
                             <constraint firstItem="4Bv-sE-pg1" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="meG-QL-FvA"/>
@@ -57,6 +59,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="n8V-Gy-cj1"/>
+                    <connections>
+                        <outlet property="devImageViewOutlet" destination="4Bv-sE-pg1" id="0sl-HW-FUq"/>
+                        <outlet property="devNameLabelOutlet" destination="fDB-aB-bKm" id="Mnc-sI-zHU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

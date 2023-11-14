@@ -13,6 +13,10 @@ protocol GameListViewProtocol {
     func showGameList(_ gameList: [GameListEntity])
 
     func failedToFetchGameList(_ errorString: String)
+
+    func showLoadingScreen()
+
+    func dismissLoadingScreen()
 }
 
 class GameListViewController: UIViewController {
@@ -49,6 +53,20 @@ class GameListViewController: UIViewController {
 }
 
 extension GameListViewController: GameListViewProtocol {
+
+    func showLoadingScreen() {
+        let loadingVC = LoadingScreenViewController()
+        loadingVC.modalPresentationStyle = .overCurrentContext
+
+        // Animate loadingVC with a fade in animation
+        loadingVC.modalTransitionStyle = .crossDissolve
+        self.present(loadingVC, animated: true)
+    }
+
+    func dismissLoadingScreen() {
+        self.dismiss(animated: true)
+    }
+
     func showGameList(_ gameList: [GameListEntity]) {
         self.gameListData = gameList
         gameListTableViewOutlet.reloadData()
@@ -62,8 +80,8 @@ extension GameListViewController: GameListViewProtocol {
         }
         let cancelButton = UIAlertAction(title: "Cancel", style: .destructive)
 
-        alert.addAction(retryButton)
         alert.addAction(cancelButton)
+        alert.addAction(retryButton)
 
         self.present(alert, animated: true)
     }
@@ -105,6 +123,6 @@ extension GameListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.hidesBottomBarWhenPushed = true
         let reusableData = gameListData[indexPath.row]
-        gameListPresenter?.willGoToGameDetailPage(gameData: reusableData)
+        gameListPresenter?.willFetchGameDetail(id: reusableData.id)
     }
 }

@@ -12,10 +12,11 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let gameistViewController = setupGameListPage()
+        let gameListViewController = setupGameListPage()
+        let favoriteGameListViewController = setupFavoriteGameListPage()
         let profileViewController = setupProfilePage()
 
-        self.viewControllers = [gameistViewController, profileViewController]
+        self.viewControllers = [gameListViewController, favoriteGameListViewController, profileViewController]
     }
 }
 
@@ -34,9 +35,22 @@ extension TabBarViewController {
         gameListNavigationController.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.systemGray4], for: .normal)
         gameListNavigationController.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
 
-        gameListNavigationController.navigationBar.tintColor = .black
-
         return gameListNavigationController
+    }
+
+    private func setupFavoriteGameListPage() -> UINavigationController {
+        let favoriteGameListPage = FavoriteGameListBuilder.build()
+
+        let listIcon = UIImage(systemName: "heart.fill")?.withRenderingMode(.alwaysOriginal).withTintColor(.systemGray4)
+        let selectedListImage = UIImage(systemName: "heart.fill")?.withRenderingMode(.alwaysOriginal).withTintColor(.dicoding)
+
+        let favoriteGameListNavigationController = UINavigationController(rootViewController: favoriteGameListPage)
+
+        favoriteGameListNavigationController.tabBarItem = UITabBarItem(title: "Favorite List", image: listIcon, selectedImage: selectedListImage)
+        favoriteGameListNavigationController.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.systemGray4], for: .normal)
+        favoriteGameListNavigationController.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
+
+        return favoriteGameListNavigationController
     }
 
     private func setupProfilePage() -> UINavigationController {
@@ -51,8 +65,6 @@ extension TabBarViewController {
         profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: profileIcon, selectedImage: selectedProfileIcon)
         profileNavigationController.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.systemGray4], for: .normal)
         profileNavigationController.tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
-
-        profileNavigationController.navigationBar.tintColor = .black
 
         return profileNavigationController
     }

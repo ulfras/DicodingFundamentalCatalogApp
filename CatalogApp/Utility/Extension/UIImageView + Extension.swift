@@ -8,7 +8,8 @@
 import UIKit
 
 extension UIImageView {
-    private var activityIndicator: UIActivityIndicatorView {
+
+    private func createActivityIndicator() -> UIActivityIndicatorView {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = UIColor.black
@@ -42,10 +43,11 @@ extension UIImageView {
             completion?()
             return
         }
-        let activityIndicator = self.activityIndicator
+
+        let activityIndicator = createActivityIndicator()
 
         DispatchQueue.main.async {
-            self.activityIndicator.startAnimating()
+            activityIndicator.startAnimating()
         }
 
         DispatchQueue.global().async {
@@ -59,8 +61,8 @@ extension UIImageView {
                     self.image = resizedImage
                     completion?()
 
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.removeFromSuperview()
+                    activityIndicator.stopAnimating()
+                    activityIndicator.removeFromSuperview()
                 }
             } else {
                 print("Failed to download image")

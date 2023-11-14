@@ -10,24 +10,21 @@ import Alamofire
 class RAWGAPI {
 
     static var apiKey: String {
-        get {
+        guard let filePath = Bundle.main.path(forResource: "RAWG", ofType: "plist") else {
 
-            guard let filePath = Bundle.main.path(forResource: "RAWG", ofType: "plist") else {
+            guard Bundle.main.path(forResource: "RAWG-Sample", ofType: "plist") != nil else {
+                fatalError("Couldn't find any file RAWG-Sample")
 
-                guard Bundle.main.path(forResource: "RAWG-Sample", ofType: "plist") != nil else {
-                    fatalError("Couldn't find any file RAWG-Sample")
-
-                }
-
-                fatalError("Change the RAWG-Sample.plist to RAWG.plist and set the value with [APIKey:\"TheKey\"], to get \"TheKey\" go to https://rawg.io/apidocs")
             }
 
-            let plist = NSDictionary(contentsOfFile: filePath)
-            guard let value = plist?.object(forKey: "APIKey") as? String else {
-                fatalError("Couldn't find key 'APIKey' in 'RAWG.plist'.")
-            }
-            return value
+            fatalError("Change the RAWG-Sample.plist to RAWG.plist and set the value with [APIKey:\"TheKey\"], to get \"TheKey\" go to https://rawg.io/apidocs")
         }
+
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "APIKey") as? String else {
+            fatalError("Couldn't find key 'APIKey' in 'RAWG.plist'.")
+        }
+        return value
     }
 
     static func getGameList(key apiKey: String, completionHandler: @escaping (Result<RAWGGameListModel, AFError>) -> Void) {

@@ -12,6 +12,10 @@ protocol GameDetailPresenterProtocol {
 
     func willFetchGameDetail()
 
+    func willAddToFavorite(_ gameDetailData: RAWGGameDetailModel)
+
+    func willRemoveFromFavorite(_ gameDetailID: Int)
+
     func willGoToGameWebsite(_ gameWebsite: String)
 }
 
@@ -22,26 +26,36 @@ class GameDetailPresenter: GameDetailPresenterProtocol {
 
     var gameDetailRouter: GameDetailRouterProtocol?
 
-    var gameData: GameListEntity?
+    var gameDetailData: RAWGGameDetailModel?
 
-    init(gameDetailView: GameDetailViewProtocol, gameDetailInteractor: GameDetailInteractorProtocol, gameData: GameListEntity) {
+    init(gameDetailView: GameDetailViewProtocol, gameDetailInteractor: GameDetailInteractorProtocol, gameData: RAWGGameDetailModel) {
         self.gameDetailView = gameDetailView
         self.gameDetailInteractor = gameDetailInteractor
-        self.gameData = gameData
+        self.gameDetailData = gameData
     }
 
     func willFetchGameDetail() {
+        guard let gameDetailData = gameDetailData else { return }
+        gameDetailView?.showGameDetailData(gameDetailData: gameDetailData)
+    }
 
-        guard let gameData = gameData else { return }
+    func willAddToFavorite(_ gameDetailData: RAWGGameDetailModel) {
+        if !FavoriteGameDefaults.check() {
+            FavoriteGameDefaults.save([gameDetailData])
+        } else {
+            var favoriteGameList = FavoriteGameDefaults.get()
+            favoriteGameList.append(gameDetailData)
+            FavoriteGameDefaults.save(favoriteGameList)
+        }
+    }
 
-        gameDetailInteractor?.fetchGameDetail(id: String(gameData.id), completionHandler: { result in
-            switch result {
-            case .success(let gameDetailData):
-                self.gameDetailView?.showGameDetailData(gameData, gameDetailData: gameDetailData)
-            case .failure(let error):
-                self.gameDetailView?.failedToFetchGameDetail(error.localizedDescription)
-            }
-        })
+    func willRemoveFromFavorite(_ gameDetailID: Int) {
+        var favoriteList = FavoriteGameDefaults.get()
+
+        if let indexToRemove = favoriteList.firstIndex(where: { $0.id == gameDetailID }) {
+            favoriteList.remove(at: indexToRemove)
+            FavoriteGameDefaults.save(favoriteList)
+        }
     }
 
     func willGoToGameWebsite(_ gameWebsite: String) {

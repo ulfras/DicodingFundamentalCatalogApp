@@ -9,6 +9,10 @@ protocol ProfilePresenterProtocol {
     var profileView: ProfileViewProtocol? { get set }
     var profileInteractor: ProfileInteractorProtocol? { get set }
     var profileRouter: ProfileRouterProtocol? { get set }
+
+    func willCheckDeveloperName()
+
+    func willSaveDeveloperName(_ devName: String)
 }
 
 class ProfilePresenter: ProfilePresenterProtocol {
@@ -21,5 +25,19 @@ class ProfilePresenter: ProfilePresenterProtocol {
     init(profileView: ProfileViewProtocol, profileInteractor: ProfileInteractorProtocol) {
         self.profileView = profileView
         self.profileInteractor = profileInteractor
+    }
+
+    func willCheckDeveloperName() {
+        if !DeveloperNameDefaults.check() {
+            profileView?.showDeveloperName("Maulana Muhammad Yusuf Frasha")
+        } else {
+            let devName = DeveloperNameDefaults.get()
+            profileView?.showDeveloperName(devName)
+        }
+    }
+
+    func willSaveDeveloperName(_ devName: String) {
+        DeveloperNameDefaults.save(devName)
+        profileView?.showDeveloperName(devName)
     }
 }

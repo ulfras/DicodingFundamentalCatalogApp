@@ -10,16 +10,17 @@ import Alamofire
 protocol GameListInteractorProtocol {
     var gameListPresenter: GameListPresenterProtocol? { get set }
 
-    func fetchGameList(completionHandler: @escaping (Result<RAWGGameListModel, AFError>) -> Void)
+    func fetchGameDetail(id gameID: String, completionHandler: @escaping(Result<RAWGGameDetailModel, AFError>) -> Void)
 }
 
 class GameListInteractor: GameListInteractorProtocol {
+
     var gameListPresenter: GameListPresenterProtocol?
 
     let apiKey = RAWGAPI.apiKey
 
-    func fetchGameList(completionHandler: @escaping (Result<RAWGGameListModel, AFError>) -> Void) {
-        RAWGAPI.getGameList(key: apiKey) { result in
+    func fetchGameDetail(id gameID: String, completionHandler: @escaping(Result<RAWGGameDetailModel, AFError>) -> Void) {
+        RAWGAPI.getGameDetail(key: apiKey, id: gameID) { result in
             completionHandler(result)
         }
     }

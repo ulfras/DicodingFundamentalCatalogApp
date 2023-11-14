@@ -5,6 +5,8 @@
 //  Created by Maulana Frasha on 08/11/23.
 //
 
+import Foundation
+
 protocol GameListPresenterProtocol {
     var gameListView: GameListViewProtocol? { get set }
     var gameListInteractor: GameListInteractorProtocol? { get set }
@@ -12,10 +14,11 @@ protocol GameListPresenterProtocol {
 
     func willFetchGameList()
 
-    func willGoToGameDetailPage(gameData: GameListEntity)
+    func willFetchGameDetail(id gameID: Int)
 }
 
 class GameListPresenter: GameListPresenterProtocol {
+
     var gameListView: GameListViewProtocol?
 
     var gameListInteractor: GameListInteractorProtocol?
@@ -28,31 +31,64 @@ class GameListPresenter: GameListPresenterProtocol {
     }
 
     func willFetchGameList() {
-        gameListInteractor?.fetchGameList { result in
-            switch result {
-            case .success(let resultData):
 
-                var gameListData: [GameListEntity] = []
+        let gameListDataDefaults = GameListDefaults.get()
 
-                for resultDatum in resultData.results {
-                    gameListData.append(
-                        GameListEntity(
-                            id: resultDatum.id,
-                            name: resultDatum.name,
-                            released: resultDatum.released,
-                            backgroundImage: resultDatum.backgroundImage,
-                            rating: resultDatum.rating)
-                    )
-                }
+        var gameListData: [GameListEntity] = []
 
-                self.gameListView?.showGameList(gameListData)
-            case .failure(let error):
-                self.gameListView?.failedToFetchGameList(error.localizedDescription)
-            }
+        for resultDatum in gameListDataDefaults.results {
+            gameListData.append(
+                GameListEntity(
+                    id: resultDatum.id,
+                    name: resultDatum.name,
+                    released: resultDatum.released,
+                    backgroundImage: resultDatum.backgroundImage,
+                    rating: resultDatum.rating)
+            )
         }
+
+        gameListView?.showGameList(gameListData)
     }
 
-    func willGoToGameDetailPage(gameData: GameListEntity) {
-        gameListRouter?.goToGameDetailPage(gameData: gameData)
+    func willFetchGameDetail(id gameID: Int) {
+
+        gameListView?.showLoadingScreen()
+
+        if FavoriteGameDefaults.check() {
+
+            let favoriteList = FavoriteGameDefaults.get()
+            var foundMatch = false
+
+            if let index = favoriteList.firstIndex(where: { $0.id == gameID }) {
+                let data = favoriteList[index]
+
+                self.gameListView?.dismissLoadingScreen()
+                self.gameListRouter?.goToGameDetailPage(gameData: data)
+
+                foundMatch = true
+            }
+
+            if !foundMatch {
+                gameListInteractor?.fetchGameDetail(id: String(gameID), completionHandler: { result in
+                    switch result {
+                    case .success(let gameDetailData):
+                        self.gameListView?.dismissLoadingScreen()
+                        self.gameListRouter?.goToGameDetailPage(gameData: gameDetailData)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                })
+            }
+        } else {
+            gameListInteractor?.fetchGameDetail(id: String(gameID), completionHandler: { result in
+                switch result {
+                case .success(let gameDetailData):
+                    self.gameListView?.dismissLoadingScreen()
+                    self.gameListRouter?.goToGameDetailPage(gameData: gameDetailData)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            })
+        }
     }
 }

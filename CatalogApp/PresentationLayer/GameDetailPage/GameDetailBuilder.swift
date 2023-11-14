@@ -13,7 +13,7 @@ class GameDetailBuilder {
         return UIStoryboard(name: "GameDetailPage", bundle: Bundle.main)
     }
 
-    static func build(gameData: GameListEntity) -> UIViewController {
+    static func build(gameData: RAWGGameDetailModel) -> UIViewController {
         let view = storyBoard.instantiateViewController(withIdentifier: "GameDetailPage") as! GameDetailViewController
         let interactor = GameDetailInteractor()
         let presenter = GameDetailPresenter(gameDetailView: view, gameDetailInteractor: interactor, gameData: gameData)

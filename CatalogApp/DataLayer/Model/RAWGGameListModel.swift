@@ -5,11 +5,11 @@
 //  Created by Maulana Frasha on 09/11/23.
 //
 
-struct RAWGGameListModel: Decodable {
+struct RAWGGameListModel: Codable {
     let results: [RAWGGameListResult]
 }
 
-struct RAWGGameListResult: Decodable {
+struct RAWGGameListResult: Codable {
     let id: Int
     let name: String
     let released: String
