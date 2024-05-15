@@ -6,7 +6,7 @@
 xcuserdata/
 
 ## Custom plist
-CatalogApp/Resources/RAWG.plist
+# CatalogApp/Resources/RAWG.plist
 
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 *.xcscmblueprint
